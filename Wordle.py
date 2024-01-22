@@ -12,11 +12,22 @@ from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
 
 def wordle():
 
+    
     def enter_action(s):
-        gw.show_message("You have to implement this method.")
+        if s.lower() in FIVE_LETTER_WORDS:
+            gw.show_message("Good Job")
+        else:
+            gw.show_message("Not in word list")
 
     gw = WordleGWindow()
     gw.add_enter_listener(enter_action)
+
+     # Choose a random word from the provided list
+    selected_word = random.choice(FIVE_LETTER_WORDS)
+
+    # Display the selected word in the first row
+    for col in range(N_COLS):
+        gw.set_square_letter(0, col, selected_word[col])
 
 # Startup code
 
