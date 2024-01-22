@@ -1,8 +1,7 @@
 # File: Wordle.py
 # i think i did some stuff
 """
-This module is the starter file for the Wordle assignment.
-BE SURE TO UPDATE THIS COMMENT WHEN YOU WRITE THE CODE.
+Picks a random word and puts it in the top row. Milestone 1 complete!
 """
 
 import random
@@ -18,6 +17,7 @@ def wordle():
             gw.show_message("Good Job")
         else:
             gw.show_message("Not in word list")
+
 
     gw = WordleGWindow()
     gw.add_enter_listener(enter_action)
