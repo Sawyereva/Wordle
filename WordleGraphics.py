@@ -8,7 +8,7 @@ graphical display for the Wordle project.
 import atexit
 import math
 import time
-import tkinter
+import tkinter as tk
 
 # Constants
 
@@ -57,6 +57,8 @@ BOARD_WIDTH = N_COLS * SQUARE_SIZE + (N_COLS - 1) * SQUARE_SEP
 BOARD_HEIGHT = N_ROWS * SQUARE_SIZE + (N_ROWS - 1) * SQUARE_SEP
 MESSAGE_X = CANVAS_WIDTH / 2
 MESSAGE_Y = TOP_MARGIN + BOARD_HEIGHT + MESSAGE_SEP
+
+
 
 class WordleGWindow:
     """This class creates the Wordle window."""
@@ -149,11 +151,11 @@ class WordleGWindow:
             """Starts the tkinter event loop when the program exits."""
             root.mainloop()
 
-        root = tkinter.Tk()
+        root = tk.Tk()
         root.title("Wordle")
         root.protocol("WM_DELETE_WINDOW", delete_window)
         self._root = root
-        canvas = tkinter.Canvas(root,
+        canvas = tk.Canvas(root,
                                 bg="White",
                                 width=CANVAS_WIDTH,
                                 height=CANVAS_HEIGHT,
@@ -170,6 +172,30 @@ class WordleGWindow:
         self._row = 0
         self._col = 0
         atexit.register(start_event_loop)
+
+        # Boolean variables to track checkbox states
+        self._mode_blind = tk.BooleanVar()
+        self._mode_hard = tk.BooleanVar()
+
+        # Create checkboxes
+        self._chkbox_blind = tk.Checkbutton(canvas, text="Color-Blind Mode", variable=self._mode_blind)
+        self._chkbox_hard = tk.Checkbutton(canvas, text="Hard Mode", variable=self._mode_hard)
+
+        # Place checkboxes on the canvas
+        canvas.create_window(30, 435, anchor='nw', window=self._chkbox_blind)
+        canvas.create_window(152, 435, anchor='nw', window=self._chkbox_hard)
+
+        # Default mode: Easy
+        self._mode_blind.set(False)
+        self._mode_hard.set(False)
+
+    def is_blind_mode(self):
+        """Check if easy mode is enabled."""
+        return self._mode_blind.get()
+
+    def is_hard_mode(self):
+        """Check if hard mode is enabled."""
+        return self._mode_hard.get()
 
     def get_square_letter(self, row, col):
         return self._grid[row][col].get_letter()
@@ -303,7 +329,7 @@ class WordleMessage:
         self._msg = canvas.create_text(x, y,
                                        text="",
                                        font=MESSAGE_FONT,
-                                       anchor=tkinter.CENTER)
+                                       anchor=tk.CENTER)
 
     def get_text(self):
         return self._text
