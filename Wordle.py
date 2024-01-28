@@ -18,6 +18,8 @@ def wordle():
     def enter_action(s):
         if s.lower() in FIVE_LETTER_WORDS:
             if s.lower() == selected_word:
+                for i in range(6):
+                    gw.set_square_color(gw.get_current_row(), i, CORRECT_COLOR)
                 gw.show_message("Congrats")
                 gw.set_current_row(6)
             else:
