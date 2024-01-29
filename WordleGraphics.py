@@ -116,10 +116,9 @@ class WordleGWindow:
                 for fn in self._enter_listeners:
                     fn(s)
             elif ch.isalpha():
-                self.show_message("")
                 if self._row < N_ROWS and self._col < N_COLS:
                     sq = self._grid[self._row][self._col]
-                    sq.set_letter(ch)
+                    sq.set_letter(ch)  # Update the letter in the square
                     self._col += 1
 
         def press_action(tke):
@@ -175,27 +174,27 @@ class WordleGWindow:
 
         # Boolean variables to track checkbox states
         self._mode_blind = tk.BooleanVar()
-        self._mode_hard = tk.BooleanVar()
+        self._mode_dutch = tk.BooleanVar()
 
         # Create checkboxes
         self._chkbox_blind = tk.Checkbutton(canvas, text="Color-Blind Mode", variable=self._mode_blind)
-        self._chkbox_hard = tk.Checkbutton(canvas, text="Hard Mode", variable=self._mode_hard)
+        self._chkbox_dutch = tk.Checkbutton(canvas, text="Dutch Mode", variable=self._mode_dutch)
 
         # Place checkboxes on the canvas
         canvas.create_window(30, 435, anchor='nw', window=self._chkbox_blind)
-        canvas.create_window(152, 435, anchor='nw', window=self._chkbox_hard)
+        canvas.create_window(152, 435, anchor='nw', window=self._chkbox_dutch)
 
         # Default mode: Easy
         self._mode_blind.set(False)
-        self._mode_hard.set(False)
+        self._mode_dutch.set(False)
 
     def is_blind_mode(self):
         """Check if easy mode is enabled."""
         return self._mode_blind.get()
 
-    def is_hard_mode(self):
-        """Check if hard mode is enabled."""
-        return self._mode_hard.get()
+    def is_dutch_mode(self):
+        """Check if dutch mode is enabled."""
+        return self._mode_dutch.get()
 
     def get_square_letter(self, row, col):
         return self._grid[row][col].get_letter()
@@ -231,9 +230,10 @@ class WordleGWindow:
     def show_message(self, msg, color="Black"):
         self._message.set_text(msg, color)
 
+BORDER_COLOR = "#000000"  # Black border for the squares
+BORDER_WIDTH = 2          # Width of the border in pixels
 
 class WordleSquare:
-
     def __init__(self, canvas, row, col):
         x0 = (CANVAS_WIDTH - BOARD_WIDTH) / 2 + col * SQUARE_DELTA
         y0 = TOP_MARGIN + row * SQUARE_DELTA
@@ -241,12 +241,14 @@ class WordleSquare:
         y1 = y0 + SQUARE_SIZE
         self._canvas = canvas
         self._ch = " "
-        self._color = UNKNOWN_COLOR;
-        self._frame = canvas.create_rectangle(x0, y0, x1, y1)
+        self._color = UNKNOWN_COLOR
+        # Create a rectangle with a border
+        self._frame = canvas.create_rectangle(x0, y0, x1, y1, outline=BORDER_COLOR, width=BORDER_WIDTH)
         self._text = canvas.create_text(x0 + SQUARE_SIZE / 2,
                                         y0 + SQUARE_SIZE / 2,
                                         text=self._ch,
                                         font=SQUARE_FONT)
+
 
     def get_letter(self):
         return self._ch

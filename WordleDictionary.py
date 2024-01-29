@@ -833,3 +833,20 @@ FIVE_LETTER_WORDS = [
     "zones", "zonks", "zooey", "zooid", "zooks", "zooms", "zoons",
     "zoril", "zowie", "zymes"
 ]
+
+FIVE_LETTER_WORDS_DUTCH = [
+    "appel", "brood", "droom", "fiets", "geest", "haven", "ijsje",
+    "jacht", "kaart", "licht", "molen", "nacht", "oceaan", "paard",
+    "quark", "rozen", "slang", "tafel", "uurwerk", "vijver",
+    "wagen", "xenon", "yacht", "zebra", "zwaan", "kraan", "lucht",
+    "maand", "noord", "ovaal", "praat", "reken", "steen", "trots",
+    "vlees", "water", "zomer", "baken", "diner", "eerst", "fluit",
+    "groei", "hotel", "inkt", "jas", "klant", "lepel", "muis",
+    "nevel", "oprit", "piano", "quote", "radio", "smaak", "taart",
+    "uil", "vloer", "winst", "xylem", "yoga", "zaken", "actie",
+    "balen", "cello", "duif", "eikel", "friet", "garnaal", "hamer",
+    "index", "jager", "kabel", "laser", "motor", "neger", "olijf",
+    "preek", "quilt", "racer", "sabel", "tango", "uilig", "vraag",
+    "wacht", "xenog", "yucca", "zadel", "amber", "bocht", "crash",
+    "dwaas", "engel", "fakir", "graaf", "hoorn", "idool", "jubel"
+]
