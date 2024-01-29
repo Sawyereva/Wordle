@@ -181,8 +181,8 @@ class WordleGWindow:
         self._chkbox_dutch = tk.Checkbutton(canvas, text="Dutch Mode", variable=self._mode_dutch)
 
         # Place checkboxes on the canvas
-        canvas.create_window(30, 435, anchor='nw', window=self._chkbox_blind)
-        canvas.create_window(152, 435, anchor='nw', window=self._chkbox_dutch)
+        canvas.create_window(30, 450, anchor='nw', window=self._chkbox_blind)
+        canvas.create_window(152, 450, anchor='nw', window=self._chkbox_dutch)
 
         # Default mode: Easy
         self._mode_blind.set(False)
