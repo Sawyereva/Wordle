@@ -13,10 +13,14 @@ def wordle():
     
    
     # Choose a random word from the provided list
-    selected_word = random.choice(FIVE_LETTER_WORDS)
+   
 
         
     def enter_action(s):
+        if gw.is_dutch_mode() :
+            selected_word = random.choice(FIVE_LETTER_WORDS_DUTCH)
+        else:
+            selected_word = random.choice(FIVE_LETTER_WORDS)
         if gw.is_blind_mode():
             global CORRECT_COLOR
             global PRESENT_COLOR
@@ -67,7 +71,7 @@ def wordle():
                         if check == 0:
                             gw.set_square_color(gw.get_current_row(), i, MISSING_COLOR)        
                         if(s.lower()[i] == selected_word[i]):
-                            gw.set_square_colr(gw.get_current_row(), i, CORRECT_COLOR)
+                            gw.set_square_color(gw.get_current_row(), i, CORRECT_COLOR)
                     gw.set_current_row(gw.get_current_row() + 1)
                     if(gw.get_current_row() == 6):
                         gw.show_message("Sorry try again later!")
@@ -77,9 +81,9 @@ def wordle():
     gw = WordleGWindow()
     gw.add_enter_listener(enter_action)
 
-    # Display the selected word in the first row
-    for col in range(N_COLS):
-       gw.set_square_letter(0, col, selected_word[col])
+    # # Display the selected word in the first row
+    # for col in range(N_COLS):
+    #    gw.set_square_letter(0, col, selected_word[col])
 
 # Startup code
 
