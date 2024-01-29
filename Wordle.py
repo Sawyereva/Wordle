@@ -14,13 +14,11 @@ def wordle():
    
     # Choose a random word from the provided list
    
+    selected_word = random.choice(FIVE_LETTER_WORDS)
 
         
     def enter_action(s):
-        if gw.is_dutch_mode() :
-            selected_word = random.choice(FIVE_LETTER_WORDS_DUTCH)
-        else:
-            selected_word = random.choice(FIVE_LETTER_WORDS)
+       
         if gw.is_blind_mode():
             global CORRECT_COLOR
             global PRESENT_COLOR
